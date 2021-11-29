@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/analog-clock/static/js/main.ebdc1461.chunk.js",
+    "main.js.map": "/analog-clock/static/js/main.ebdc1461.chunk.js.map",
+    "runtime-main.js": "/analog-clock/static/js/runtime-main.1ba6d6aa.js",
+    "runtime-main.js.map": "/analog-clock/static/js/runtime-main.1ba6d6aa.js.map",
+    "static/js/2.2f6d8d17.chunk.js": "/analog-clock/static/js/2.2f6d8d17.chunk.js",
+    "static/js/2.2f6d8d17.chunk.js.map": "/analog-clock/static/js/2.2f6d8d17.chunk.js.map",
+    "index.html": "/analog-clock/index.html",
+    "static/js/2.2f6d8d17.chunk.js.LICENSE.txt": "/analog-clock/static/js/2.2f6d8d17.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1ba6d6aa.js",
+    "static/js/2.2f6d8d17.chunk.js",
+    "static/js/main.ebdc1461.chunk.js"
+  ]
+}
