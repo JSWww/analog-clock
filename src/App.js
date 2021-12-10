@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setTime } from './modules/clock';
 import GlobalStyle from './styles/global';
+import Tooltip from './components/Tooltip';
 import AnalogClock from './components/AnalogClock';
 
 function App() {
@@ -19,16 +20,25 @@ function App() {
     dispatch(setTime(hours, minutes, seconds));
   }, [dispatch]);
 
+  const timeFormat = (n) => (n < 10 ? `0${n}` : `${n}`);
+
+  const currentTimeToString = () =>
+    `${timeFormat(clock.hours)}시 ${timeFormat(clock.minutes)}분 ${timeFormat(
+      clock.seconds,
+    )}초`;
+
   return (
     <>
       <GlobalStyle />
       <Container>
-        <AnalogClock
-          hours={clock.hours}
-          minutes={clock.minutes}
-          seconds={clock.seconds}
-          setCurrentTime={setCurrentTime}
-        />
+        <Tooltip message={currentTimeToString()}>
+          <AnalogClock
+            hours={clock.hours}
+            minutes={clock.minutes}
+            seconds={clock.seconds}
+            setCurrentTime={setCurrentTime}
+          />
+        </Tooltip>
       </Container>
     </>
   );
@@ -41,4 +51,4 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-export default React.memo(App);
+export default App;

@@ -1,63 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 function AnalogClock({ hours, minutes, seconds, setCurrentTime }) {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const tooltipRef = useRef();
-
   useEffect(() => {
     const interval = setInterval(setCurrentTime, 1000);
     return () => clearInterval(interval);
   }, [setCurrentTime]);
 
-  const onMouseHover = () => {
-    setShowTooltip(!showTooltip);
-  };
-
-  const onMouseMove = (e) => {
-    if (!showTooltip) return;
-
-    const currentTargetRect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.pageX - currentTargetRect.left;
-    const offsetY = e.pageY - currentTargetRect.top;
-
-    tooltipRef.current.style.left = `${offsetX}px`;
-    tooltipRef.current.style.top = `${offsetY - 40}px`;
-  };
-
-  const timeFormat = (n) => (n < 10 ? `0${n}` : `${n}`);
-
   return (
-    <ClockFace
-      onMouseEnter={onMouseHover}
-      onMouseLeave={onMouseHover}
-      onMouseMove={onMouseMove}
-    >
-      {Array.from({ length: 60 }).map((_, i) => (
-        <Mark key={i} angle={6 * i} />
-      ))}
+    <ClockFace>
+      {marks}
       <HoursHand angle={30 * hours + 0.5 * minutes} />
       <MinutesHand angle={6 * minutes} />
       <SecondsHand angle={6 * seconds} />
-      {showTooltip && (
-        <ToolTip ref={tooltipRef}>
-          {timeFormat(hours)}시 {timeFormat(minutes)}분 {timeFormat(seconds)}초
-        </ToolTip>
-      )}
     </ClockFace>
   );
 }
-
-const ToolTip = styled.div`
-  position: absolute;
-  padding: 5px 10px;
-  border: 1px solid transparent;
-  color: #fff;
-  background-color: #222;
-  opacity: 0.8;
-  white-space: nowrap;
-  z-index: 999;
-`;
 
 const ClockFace = styled.div`
   position: relative;
@@ -106,6 +64,10 @@ const Mark = styled.div`
     transform: ${({ angle }) => `rotate(${-angle}deg)`};
   }
 `;
+
+const marks = Array.from({ length: 60 }).map((_, i) => (
+  <Mark key={i} angle={6 * i} />
+));
 
 const Hand = styled.div.attrs(({ angle }) => ({
   style: {

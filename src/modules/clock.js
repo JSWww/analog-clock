@@ -3,9 +3,9 @@ const SET_TIME = 'clock/SET_TIME';
 export const setTime = (hours, minutes, seconds) => {
   return {
     type: SET_TIME,
-    hours: hours,
-    minutes: minutes,
-    seconds: seconds,
+    hours,
+    minutes,
+    seconds,
   };
 };
 
